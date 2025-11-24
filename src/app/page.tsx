@@ -12,9 +12,9 @@ export default function Home() {
         {/* Left: Copy */}
         <section className="hero-section">
           <span className="badge">SYSTEM: ONLINE</span>
-          <h1>Surveys that actually feel human.</h1>
+          <h1>Research that feels truly human.</h1>
           <p>
-            Stop sending boring forms. <strong>ibbe flow</strong> turns questions into conversations. Keyboard-first, tactile, and designed to keep people awake.
+            Experience a refreshing way to contribute. Join active studies published directly by the team. We transform questions into fluid conversations. Immersive, meaningful, and designed to keep every participant fully engaged.
           </p>
 
           <div className="cta-group">
