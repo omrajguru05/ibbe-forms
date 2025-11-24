@@ -12,10 +12,7 @@ export default function UrlBar() {
     let badgeText = 'BETA_V1';
     const isResponseDetail = pathname?.startsWith('/responses/') && pathname.split('/').length > 2;
 
-    if (pathname === '/form/startup/success') {
-        urlText = '🔒 flow.ibbe.in/sent';
-        badgeText = 'STATUS: 200 OK';
-    } else if (pathname === '/responses') {
+    if (pathname === '/responses') {
         urlText = '🔒 flow.ibbe.in/responses';
         badgeText = 'PROJECT: STARTUP_PROFILE';
     } else if (isResponseDetail) {

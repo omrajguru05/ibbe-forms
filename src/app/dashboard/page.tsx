@@ -56,27 +56,7 @@ export default function Dashboard() {
                         <div style={{ fontFamily: "'JetBrains Mono'", fontWeight: 700 }}>CREATE NEW FLOW</div>
                     </div>
 
-                    {/* CARD: PROFILE */}
-                    <Link href="/form/startup" style={{ textDecoration: 'none', color: 'inherit', display: 'contents' }}>
-                        <div className="project-card" style={{ transform: "rotate(1deg)", cursor: "pointer" }}>
-                            <div className="paperclip" style={{ background: "var(--neon-green)" }}></div>
-                            <div className="card-top">
-                                <div className="date-badge">EDITED 2M AGO</div>
-                                <div style={{ fontSize: "20px" }}>...</div>
-                            </div>
-                            <h3>Startup Interest & Profile</h3>
-                            <p className="desc">Primary intake form for the batch of 2026. collecting demographics and pitch decks.</p>
-
-                            <div className="stamp">LIVE</div>
-
-                            <div className="progress-bar">
-                                <div className="fill" style={{ width: "85%" }}></div>
-                            </div>
-                            <div style={{ fontFamily: "'JetBrains Mono'", fontSize: "10px", marginTop: "8px", textAlign: "right" }}>85% GOAL</div>
-                        </div>
-                    </Link>
-
-                    {/* OTHER CARDS HIDDEN (NOT LIVE) */}
+                    {/* ALL FORMS ON VACATION - EMPTY STATE */}
 
                 </div>
 
