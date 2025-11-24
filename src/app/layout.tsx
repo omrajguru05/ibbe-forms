@@ -4,15 +4,25 @@ import UrlBar from "@/components/UrlBar";
 
 export const metadata: Metadata = {
   title: "ibbe flow / surveys that don't suck",
-  description: "Surveys that actually feel human.",
+  description: "Access exclusive research studies published by the team. Experience a fluid way to share insights through conversational participation.",
+  keywords: "research participation, curated studies, team insights, user feedback, immersive experience, active participation, conversational surveys, study access",
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon.ico', sizes: '16x16', type: 'image/x-icon' },
-      { url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
     ],
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
+  openGraph: {
+    title: "IBBE Forms - Research That Feels Truly Human",
+    description: "Contribute to curated studies designed for true engagement. A refreshing and immersive way to share your perspective.",
+    type: "website",
+    siteName: "IBBE Forms",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IBBE Forms - Research That Feels Truly Human",
+    description: "Contribute to curated studies designed for true engagement. A refreshing and immersive way to share your perspective.",
   },
 };
 

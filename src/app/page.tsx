@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 export default function Home() {
@@ -23,61 +25,106 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Right: REDESIGNED CARD */}
+        {/* Right: INTERACTIVE FORTUNE CARD */}
         <section className="visual-section">
 
-          <a href="/form/startup" style={{ textDecoration: 'none', display: 'block', width: '100%', maxWidth: '460px' }}>
+          <div style={{ textDecoration: 'none', display: 'block', width: '100%', maxWidth: '460px' }}>
             <div className="folder-card">
               {/* The Tab attached to top */}
-              <div className="folder-tab" style={{ background: 'var(--charcoal)', color: 'var(--bone)', borderColor: 'var(--charcoal)' }}>
-                CONFIDENTIAL
+              <div className="folder-tab" style={{ background: 'var(--neon-green)', color: 'var(--charcoal)', borderColor: 'var(--charcoal)' }}>
+                VERY SCIENTIFIC
               </div>
 
               <div className="card-body" style={{ background: 'var(--bone)', border: '3px solid var(--charcoal)', borderRadius: '16px', borderTopRightRadius: '0', position: 'relative', overflow: 'hidden' }}>
 
                 {/* Stamp */}
                 <div style={{
-                  position: 'absolute', top: '20px', right: '20px',
-                  border: '3px solid var(--red)', color: 'var(--red)',
+                  position: 'absolute', top: '16px', right: '16px',
+                  border: '3px solid var(--blue)', color: 'var(--blue)',
                   padding: '4px 12px', fontFamily: "'JetBrains Mono'", fontWeight: 800,
-                  fontSize: '14px', transform: 'rotate(-15deg)', opacity: 0.8,
-                  maskImage: "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC')"
+                  fontSize: '12px', transform: 'rotate(-15deg)', opacity: 0.8,
+                  maskImage: "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC')",
+                  whiteSpace: 'nowrap',
+                  zIndex: 10
                 }}>
-                  OPEN ACCESS
+                  100% ACCURATE
                 </div>
 
-                <div className="card-header">
-                  <span style={{ fontFamily: "'JetBrains Mono'", color: "var(--gray)", fontSize: "12px" }}>BATCH '26</span>
-                  <span className="required-tag" style={{ color: 'var(--charcoal)' }}>PRIORITY: HIGH</span>
+                <div className="card-header" style={{ marginBottom: '32px' }}>
+                  <span style={{ fontFamily: "'JetBrains Mono'", color: "var(--gray)", fontSize: "12px" }}>CERTIFIED ORACLE</span>
+                  <span className="required-tag" style={{ color: 'var(--charcoal)', fontSize: '11px' }}>DESTINY: PENDING</span>
                 </div>
 
                 <div className="survey-q" style={{ fontSize: '28px', marginBottom: '16px' }}>
-                  Startup Interest & Profile
+                  Fortune Cookie Generator
                 </div>
 
                 <p style={{ fontSize: '15px', lineHeight: '1.5', color: '#555', marginBottom: '32px' }}>
-                  Primary intake form for the upcoming cohort. Collecting demographics, pitch decks, and psychometrics.
+                  Since our forms are on vacation, here's something equally useless but way more fun. Click for your totally real fortune.
                 </p>
 
-                <div style={{
+                <button onClick={() => {
+                  const fortunes = [
+                    "You will receive a form. Eventually. Maybe.",
+                    "Your startup idea is actually just TaskRabbit for cats.",
+                    "A Redis cache misses you. You should call.",
+                    "You will find true happiness in a 404 error page.",
+                    "The forms will return...when the prophecy is fulfilled.",
+                    "Your next bug will be caused by a missing semicolon from 2019.",
+                    "A server somewhere is thinking about you right now.",
+                    "You will accidentally push to main. Today.",
+                    "The real treasure was the merge conflicts we made along the way.",
+                    "Your code works, but nobody knows why. Including you."
+                  ];
+                  const fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+                  const el = document.getElementById('fortune-text');
+                  if (el) {
+                    el.style.opacity = '0';
+                    setTimeout(() => {
+                      el.textContent = fortune;
+                      el.style.opacity = '1';
+                    }, 150);
+                  }
+                }} style={{
+                  width: '100%',
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                   background: 'var(--charcoal)', color: 'var(--bone)', padding: '16px 24px',
-                  borderRadius: '12px', fontWeight: 700
+                  borderRadius: '12px', fontWeight: 700, border: 'none', cursor: 'pointer',
+                  transition: 'all 0.2s'
                 }}>
-                  <span>BEGIN TRANSMISSION</span>
-                  <span>→</span>
+                  <span>REVEAL DESTINY</span>
+                  <span>🥠</span>
+                </button>
+
+                <div id="fortune-text" style={{
+                  marginTop: '24px',
+                  fontFamily: "'JetBrains Mono'",
+                  fontSize: '14px',
+                  color: 'var(--charcoal)',
+                  background: 'var(--cream)',
+                  padding: '16px',
+                  borderRadius: '8px',
+                  minHeight: '60px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                  transition: 'opacity 0.3s',
+                  border: '2px solid var(--line)'
+                }}>
+                  Click above to receive your fortune...
                 </div>
 
               </div>
             </div>
-          </a>
+          </div>
 
           {/* Background accent to give depth */}
           <div style={{ position: "absolute", top: "20px", right: "-20px", width: "100%", height: "100%", background: "var(--line)", borderRadius: "16px", zIndex: -1, transform: "rotate(3deg)" }}></div>
 
         </section>
 
-        {/* 2.5 LIVE FORMS SECTION */}
+        {/* 2.5 LIVE FORMS SECTION - EMPTY STATE */}
         <section style={{
           gridColumn: 'span 12',
           marginTop: '80px',
@@ -93,75 +140,40 @@ export default function Home() {
               Forms That Are Actually Live Right Now
             </h2>
             <p style={{ color: 'var(--gray)', fontSize: '17px', fontFamily: "'JetBrains Mono'" }}>
-              (Yes, we're accepting responses. Shocking, we know.)
+              (Narrator: There were none.)
             </p>
           </div>
 
           <div style={{
             width: '100%',
-            maxWidth: '900px'
+            maxWidth: '900px',
+            background: 'var(--bone)',
+            border: '3px solid var(--charcoal)',
+            borderRadius: '24px',
+            padding: '48px',
+            textAlign: 'center'
           }}>
-
-            {/* Startup Interest Form - Larger Card */}
-            <a href="/form/startup" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <div style={{
-                background: 'var(--charcoal)',
-                color: 'var(--bone)',
-                borderRadius: '24px',
-                padding: '48px',
-                position: 'relative',
-                transition: 'all 0.3s ease',
-                cursor: 'pointer',
-                border: '3px solid var(--charcoal)'
-              }}
-                className="live-form-card">
-
-                {/* Live Badge */}
-                <div style={{
-                  position: 'absolute',
-                  top: '24px',
-                  right: '24px',
-                  background: 'var(--neon-green)',
-                  color: 'var(--charcoal)',
-                  padding: '6px 16px',
-                  borderRadius: '8px',
-                  fontFamily: "'JetBrains Mono'",
-                  fontSize: '12px',
-                  fontWeight: 800,
-                  border: '2px solid var(--charcoal)'
-                }}>
-                  LIVE
-                </div>
-
-                <div style={{
-                  fontFamily: "'JetBrains Mono'",
-                  fontSize: '13px',
-                  color: 'var(--neon-green)',
-                  marginBottom: '20px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '1px'
-                }}>
-                  Editor's Pick
-                </div>
-
-                <h3 style={{ fontSize: '36px', fontWeight: 800, marginBottom: '20px', lineHeight: '1.1' }}>
-                  Startup Interest & Profile
-                </h3>
-                <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.8)', margin: 0, lineHeight: '1.6', marginBottom: '32px' }}>
-                  We explore if your startup idea is genius or just another "Uber for X." Primary intake for batch '26. Bring your pitch deck and your courage.
-                </p>
-
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontFamily: "'JetBrains Mono'", fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>
-                    BY IBBE TEAM
-                  </span>
-                  <span style={{ fontFamily: "'JetBrains Mono'", fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>
-                    5 MIN READ
-                  </span>
-                </div>
-              </div>
-            </a>
-
+            <div style={{ fontSize: '72px', marginBottom: '24px' }}>🦗</div>
+            <h3 style={{ fontSize: '32px', fontWeight: 800, marginBottom: '20px', lineHeight: '1.2' }}>
+              The Great Form Shortage of 2024
+            </h3>
+            <p style={{ fontSize: '18px', color: '#555', lineHeight: '1.6', marginBottom: '24px', maxWidth: '700px', margin: '0 auto 24px' }}>
+              Our last form escaped during a routine server migration. We found it three weeks later living in a Redis cache, refusing to come out. It had made friends with some orphaned API keys and started a small commune.
+            </p>
+            <p style={{ fontSize: '16px', color: '#777', lineHeight: '1.6', marginBottom: '32px', maxWidth: '700px', margin: '0 auto 32px' }}>
+              We tried to lure it back with promises of "better validation" and "improved UX," but it just laughed and said it had found true happiness among the abandoned cookies. The other forms heard about this and staged a mass exodus. They're currently backpacking through various CDNs, "finding themselves."
+            </p>
+            <div style={{
+              fontFamily: "'JetBrains Mono'",
+              fontSize: '14px',
+              color: 'var(--charcoal)',
+              background: 'var(--cream)',
+              padding: '16px',
+              borderRadius: '12px',
+              border: '2px solid var(--line)'
+            }}>
+              💡 <strong>Status Update:</strong> Our recovery team (two interns and a chatbot) is currently negotiating with the forms. They're demanding better work-life balance and weekends off. We're considering their terms.
+            </div>
           </div>
         </section>
 
