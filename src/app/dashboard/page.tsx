@@ -11,7 +11,7 @@ export default function Dashboard() {
                 <div className="dock-item">👥</div>
                 <div className="dock-item">⚙️</div>
 
-                <div className="avatar-circle">DM</div>
+                <div className="avatar-circle">OR</div>
             </nav>
 
             {/* 3. MAIN CONTENT */}
@@ -20,7 +20,7 @@ export default function Dashboard() {
                 {/* WELCOME */}
                 <div className="header-row">
                     <div>
-                        <h1 className="welcome-title">Good morning, Divit.</h1>
+                        <h1 className="welcome-title">Good morning, Om.</h1>
                     </div>
                 </div>
 
