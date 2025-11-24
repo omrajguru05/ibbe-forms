@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function UrlBar() {
     const pathname = usePathname();
+    const router = useRouter();
 
     let urlText = '🔒 flow.ibbe.in';
     let badgeText = 'BETA_V1';
@@ -27,6 +28,11 @@ export default function UrlBar() {
         urlText = '🔒 flow.ibbe.in/form';
     }
 
+    const handleCopy = () => {
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link copied to clipboard!');
+    };
+
     return (
         <nav className="url-bar">
             {isResponseDetail ? (
@@ -45,9 +51,24 @@ export default function UrlBar() {
                 </Link>
             ) : (
                 <div className="traffic-lights">
-                    <div className="light" style={{ background: "#FF5F56" }}></div>
-                    <div className="light" style={{ background: "#FFBD2E" }}></div>
-                    <div className="light" style={{ background: "#27C93F" }}></div>
+                    <div
+                        className="light"
+                        style={{ background: "#FF5F56", cursor: 'pointer' }}
+                        onClick={() => router.push('/')}
+                        title="Home"
+                    ></div>
+                    <div
+                        className="light"
+                        style={{ background: "#FFBD2E", cursor: 'pointer' }}
+                        onClick={() => router.back()}
+                        title="Back"
+                    ></div>
+                    <div
+                        className="light"
+                        style={{ background: "#27C93F", cursor: 'pointer' }}
+                        onClick={handleCopy}
+                        title="Copy Link"
+                    ></div>
                 </div>
             )}
 

@@ -26,42 +26,51 @@ export default function Home() {
         {/* Right: REDESIGNED CARD */}
         <section className="visual-section">
 
-          <div className="folder-card">
-            {/* The Tab attached to top */}
-            <div className="folder-tab">
-              LIVE DEMO
+          <a href="/form/startup" style={{ textDecoration: 'none', display: 'block', width: '100%', maxWidth: '460px' }}>
+            <div className="folder-card">
+              {/* The Tab attached to top */}
+              <div className="folder-tab" style={{ background: 'var(--charcoal)', color: 'var(--bone)', borderColor: 'var(--charcoal)' }}>
+                CONFIDENTIAL
+              </div>
+
+              <div className="card-body" style={{ background: 'var(--bone)', border: '3px solid var(--charcoal)', borderRadius: '16px', borderTopRightRadius: '0', position: 'relative', overflow: 'hidden' }}>
+
+                {/* Stamp */}
+                <div style={{
+                  position: 'absolute', top: '20px', right: '20px',
+                  border: '3px solid var(--red)', color: 'var(--red)',
+                  padding: '4px 12px', fontFamily: "'JetBrains Mono'", fontWeight: 800,
+                  fontSize: '14px', transform: 'rotate(-15deg)', opacity: 0.8,
+                  maskImage: "url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC')"
+                }}>
+                  OPEN ACCESS
+                </div>
+
+                <div className="card-header">
+                  <span style={{ fontFamily: "'JetBrains Mono'", color: "var(--gray)", fontSize: "12px" }}>BATCH '26</span>
+                  <span className="required-tag" style={{ color: 'var(--charcoal)' }}>PRIORITY: HIGH</span>
+                </div>
+
+                <div className="survey-q" style={{ fontSize: '28px', marginBottom: '16px' }}>
+                  Startup Interest & Profile
+                </div>
+
+                <p style={{ fontSize: '15px', lineHeight: '1.5', color: '#555', marginBottom: '32px' }}>
+                  Primary intake form for the upcoming cohort. Collecting demographics, pitch decks, and psychometrics.
+                </p>
+
+                <div style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  background: 'var(--charcoal)', color: 'var(--bone)', padding: '16px 24px',
+                  borderRadius: '12px', fontWeight: 700
+                }}>
+                  <span>BEGIN TRANSMISSION</span>
+                  <span>→</span>
+                </div>
+
+              </div>
             </div>
-
-            <div className="card-body">
-              <div className="card-header">
-                <span style={{ fontFamily: "'JetBrains Mono'", color: "var(--gray)", fontSize: "12px" }}>01 / 03</span>
-                <span className="required-tag">REQUIRED *</span>
-              </div>
-
-              <div className="survey-q">
-                What’s the most annoying thing about surveys?
-              </div>
-
-              <div className="option">
-                <span className="key-hint">A</span>
-                <span>They are too long.</span>
-              </div>
-
-              <div className="option active">
-                <span className="key-hint" style={{ background: "var(--blue)" }}>B</span>
-                <span>They look boring.</span>
-              </div>
-
-              <div className="option">
-                <span className="key-hint">C</span>
-                <span>I never finish them.</span>
-              </div>
-
-              <div style={{ marginTop: "24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <div style={{ fontFamily: "'JetBrains Mono'", fontSize: "11px", color: "var(--gray)" }}>PRESS ↵ TO CONTINUE</div>
-              </div>
-            </div>
-          </div>
+          </a>
 
           {/* Background accent to give depth */}
           <div style={{ position: "absolute", top: "20px", right: "-20px", width: "100%", height: "100%", background: "var(--line)", borderRadius: "16px", zIndex: -1, transform: "rotate(3deg)" }}></div>
