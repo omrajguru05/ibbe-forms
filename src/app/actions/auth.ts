@@ -8,13 +8,13 @@ export async function login(formData: FormData) {
 
     // Hardcoded credentials as requested
     if (username === 'omrajguru05' && password === 'OmwillbeLive@12pm') {
-        // Set a session cookie
-        // In a real app, this would be a signed JWT or session ID
+        // Set a persistent session cookie (30 days)
         const cookieStore = await cookies()
         cookieStore.set('session', 'authenticated', {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            maxAge: 60 * 60 * 24 * 7, // 1 week
+            sameSite: 'lax',
+            maxAge: 60 * 60 * 24 * 30, // 30 days
             path: '/',
         })
         return { success: true }
