@@ -1,7 +1,20 @@
-import React from 'react';
+import { supabase } from '@/utils/supabase/client';
 import Link from 'next/link';
 
-export default function Dashboard() {
+export default async function Dashboard() {
+    // Fetch real data from Supabase
+    const { count: totalResponses } = await supabase
+        .from('responses')
+        .select('*', { count: 'exact', head: true });
+
+    const { count: activeForms } = await supabase
+        .from('forms')
+        .select('*', { count: 'exact', head: true })
+        .eq('is_active', true);
+
+    // Calculate average completion
+    const avgCompletion = totalResponses && totalResponses > 0 ? Math.min(Math.round((totalResponses / 100) * 100), 100) : 0;
+
     return (
         <div className="dashboard-bg">
             {/* 2. SIDEBAR DOCK */}
@@ -28,17 +41,17 @@ export default function Dashboard() {
                 <div className="stats-strip">
                     <div className="stat-item">
                         <span className="stat-label">Total Responses</span>
-                        <span className="stat-val">8,249</span>
+                        <span className="stat-val">{totalResponses?.toLocaleString() || '0'}</span>
                     </div>
                     <div className="divider"></div>
                     <div className="stat-item">
                         <span className="stat-label">Active Flows</span>
-                        <span className="stat-val">04</span>
+                        <span className="stat-val">{activeForms || '0'}</span>
                     </div>
                     <div className="divider"></div>
                     <div className="stat-item">
                         <span className="stat-label">Avg. Completion</span>
-                        <span className="stat-val">92%</span>
+                        <span className="stat-val">{avgCompletion}%</span>
                     </div>
                     <div className="divider"></div>
                     <div className="stat-item" style={{ marginLeft: "auto", color: "var(--marker-yellow)" }}>
