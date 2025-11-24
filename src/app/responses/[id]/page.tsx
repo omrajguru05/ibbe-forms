@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { supabase } from '@/utils/supabase/client';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 export default function ResponseDetailPage() {
   const { id } = useParams();
+  const router = useRouter();
   const [response, setResponse] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -28,6 +29,27 @@ export default function ResponseDetailPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleDelete = async () => {
+    if (!window.confirm('Are you sure you want to delete this entry? This action cannot be undone.')) return;
+
+    try {
+      const { error } = await supabase
+        .from('startup_responses')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+      router.push('/dashboard');
+    } catch (err) {
+      console.error('Error deleting response:', err);
+      alert('Failed to delete response.');
+    }
+  };
+
+  const handleExport = () => {
+    window.print();
   };
 
   const formatDate = (dateString: string) => {
@@ -61,6 +83,20 @@ export default function ResponseDetailPage() {
           --border-thin: 1px solid var(--charcoal);
           --shadow-file: 10px 10px 0px var(--charcoal);
           --radius: 12px;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+          @page { margin: 0; }
+          body { 
+            background: white; 
+            -webkit-print-color-adjust: exact; 
+            print-color-adjust: exact;
+          }
+          .dossier-container { margin: 0; max-width: 100%; width: 100%; padding: 20px; }
+          .action-bar, .folder-tabs, .url-bar { display: none !important; }
+          .dossier-card { box-shadow: none; border: 2px solid black; }
+          .tab.active { border-bottom: 2px solid black; }
         }
 
         /* BASE */
@@ -215,6 +251,7 @@ export default function ResponseDetailPage() {
           padding: 16px;
           border-radius: 8px;
           position: relative;
+          word-break: break-word;
         }
         
         /* Special Answer Types */
@@ -336,15 +373,6 @@ export default function ResponseDetailPage() {
             <div className="p-label">AGE</div>
             <div className="p-val">{response.age || 'N/A'}</div>
 
-            <div className="p-label">EDUCATION</div>
-            <div className="p-val">{response.education_level || 'N/A'}</div>
-
-            <div className="p-label">LOGISTICS</div>
-            <div className="p-val">
-              Start: {response.start_date || 'Anytime'}<br />
-              Time: {response.best_time || 'Flexible'}
-            </div>
-
             <div className="score-box">
               <div style={{ fontFamily: "'JetBrains Mono'", fontSize: '10px', opacity: 0.7, marginBottom: '4px' }}>AUTO-SCORE</div>
               <div className="score-num">94</div>
@@ -379,47 +407,30 @@ export default function ResponseDetailPage() {
 
             {/* SECTION 2 */}
             <div>
-              <div className="section-title">02. THE PITCH</div>
-
+              <div className="section-title">02. LOGISTICS</div>
               <div className="q-block">
-                <div className="question">Current Interests</div>
-                <div className="answer">{response.interests || 'No answer provided.'}</div>
+                <div className="question">Current Education Level</div>
+                <div className="answer">{response.education_level || 'N/A'}</div>
               </div>
-
-              <div className="q-block">
-                <div className="question">Problem to Solve</div>
-                <div className="answer long-text">
-                  {response.problem_to_solve || 'No answer provided.'}
-                </div>
-              </div>
-
               <div className="grid-2">
                 <div className="q-block">
-                  <div className="question">Worked on Project?</div>
-                  <div className="answer">{response.worked_on_project ? 'YES' : 'NO'}</div>
+                  <div className="question">Start Date</div>
+                  <div className="answer">{response.start_date || 'Anytime'}</div>
                 </div>
-                {response.project_link && (
-                  <div className="q-block">
-                    <div className="question">Project Link</div>
-                    <a href={response.project_link} target="_blank" rel="noopener noreferrer" className="attachment-preview">
-                      <span style={{ fontSize: '20px' }}>🔗</span>
-                      <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <span style={{ fontWeight: 700, fontSize: '12px' }}>Open Project</span>
-                        <span style={{ fontSize: '10px', color: 'var(--gray)' }}>EXTERNAL LINK</span>
-                      </div>
-                    </a>
-                  </div>
-                )}
+                <div className="q-block">
+                  <div className="question">Best Time</div>
+                  <div className="answer">{response.best_time || 'Flexible'}</div>
+                </div>
               </div>
             </div>
 
             {/* SECTION 3 */}
             <div>
-              <div className="section-title">03. SELF ASSESSMENT</div>
+              <div className="section-title">03. REALITY CHECK</div>
 
               <div className="grid-2">
                 <div className="q-block">
-                  <div className="question">Tech Confidence</div>
+                  <div className="question">Confidence with Technology (1-5)</div>
                   <div style={{ display: 'flex', gap: '4px', marginTop: '8px' }}>
                     {[1, 2, 3, 4, 5].map(i => (
                       <div key={i} style={{ width: '100%', height: '8px', background: i <= response.confidence_tech ? 'var(--charcoal)' : 'var(--line)', borderRadius: '2px' }}></div>
@@ -428,7 +439,7 @@ export default function ResponseDetailPage() {
                   <div style={{ textAlign: 'right', fontSize: '12px', fontWeight: 700, marginTop: '4px' }}>{response.confidence_tech}/5</div>
                 </div>
                 <div className="q-block">
-                  <div className="question">Mentorship?</div>
+                  <div className="question">Open to Mentorship?</div>
                   <div className="answer" style={{ background: response.open_to_mentorship ? 'var(--bone)' : 'white', borderColor: response.open_to_mentorship ? 'var(--high-green)' : 'var(--line)' }}>
                     {response.open_to_mentorship ? '✅ OPEN TO MENTORSHIP' : '❌ NOT LOOKING'}
                   </div>
@@ -458,13 +469,49 @@ export default function ResponseDetailPage() {
               </div>
             </div>
 
+            {/* SECTION 4 */}
+            <div>
+              <div className="section-title">04. THE IDEA</div>
+
+              <div className="q-block">
+                <div className="question">Describe your current interests</div>
+                <div className="answer">{response.interests || 'No answer provided.'}</div>
+              </div>
+
+              <div className="q-block">
+                <div className="question">Explain a problem you want to solve in India</div>
+                <div className="answer long-text">
+                  {response.problem_to_solve || 'No answer provided.'}
+                </div>
+              </div>
+
+              <div className="grid-2">
+                <div className="q-block">
+                  <div className="question">Have you worked on a project before?</div>
+                  <div className="answer">{response.worked_on_project ? 'YES' : 'NO'}</div>
+                </div>
+                {response.project_link && (
+                  <div className="q-block">
+                    <div className="question">Project Link (URL)</div>
+                    <a href={response.project_link} target="_blank" rel="noopener noreferrer" className="attachment-preview">
+                      <span style={{ fontSize: '20px' }}>🔗</span>
+                      <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <span style={{ fontWeight: 700, fontSize: '12px' }}>Open Project</span>
+                        <span style={{ fontSize: '10px', color: 'var(--gray)' }}>EXTERNAL LINK</span>
+                      </div>
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+
           </div>
         </div>
 
         {/* BOTTOM ACTIONS */}
         <div className="action-bar">
-          <button className="btn btn-del">DELETE ENTRY</button>
-          <button className="btn btn-main">EXPORT AS PDF</button>
+          <button className="btn btn-del" onClick={handleDelete}>DELETE ENTRY</button>
+          <button className="btn btn-main" onClick={handleExport}>EXPORT AS PDF</button>
         </div>
 
       </div>

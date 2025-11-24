@@ -3,9 +3,9 @@
 import Link from 'next/link';
 
 export default function NotFound() {
-    return (
-        <div className="not-found-body">
-            <style jsx global>{`
+  return (
+    <div className="not-found-body">
+      <style jsx global>{`
         /* --- IBBE SYSTEM v4.7: FIDGET MODE --- */
         :root {
           --cream: #F7F2E9;
@@ -42,35 +42,6 @@ export default function NotFound() {
           overflow: hidden;
           display: flex;
           flex-direction: column;
-        }
-
-        /* --- URL BAR --- */
-        .url-bar-404 {
-          background: var(--charcoal);
-          color: var(--bone);
-          padding: 14px 24px;
-          font-family: 'JetBrains Mono', monospace;
-          font-size: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          border-bottom: var(--border-thick);
-          z-index: 100;
-        }
-        .traffic-lights { display: flex; gap: 8px; }
-        .light { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.2); cursor: pointer; transition: 0.1s; }
-        .light:hover { transform: scale(1.2); }
-        
-        .url-input-404 {
-          background: var(--toy-red); /* Error Red */
-          color: white;
-          padding: 8px 24px;
-          border-radius: 50px;
-          min-width: 300px;
-          text-align: center;
-          font-weight: 700;
-          letter-spacing: 0.5px;
-          animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
         }
 
         /* --- PLAY AREA --- */
@@ -218,49 +189,36 @@ export default function NotFound() {
         }
       `}</style>
 
-            {/* URL BAR */}
-            <nav className="url-bar-404">
-                <div className="traffic-lights">
-                    <div className="light" style={{ background: '#FF5F56' }}></div>
-                    <div className="light" style={{ background: '#FFBD2E' }}></div>
-                    <div className="light" style={{ background: '#27C93F' }}></div>
-                </div>
-                <div className="url-input-404">
-                    404_NOT_FOUND
-                </div>
-                <div style={{ fontFamily: "'JetBrains Mono'", fontSize: '11px' }}>SYSTEM: LOST</div>
-            </nav>
+      {/* PLAY AREA */}
+      <div className="play-area">
 
-            {/* PLAY AREA */}
-            <div className="play-area">
+        {/* Background Junk */}
+        <div className="junk j1">📎</div>
+        <div className="junk j2">🗑️</div>
+        <div className="junk j3">🍌</div>
 
-                {/* Background Junk */}
-                <div className="junk j1">📎</div>
-                <div className="junk j2">🗑️</div>
-                <div className="junk j3">🍌</div>
+        <div className="error-card">
+          {/* Draggable-ish sticker */}
+          <div className="sticker">UH OH.</div>
 
-                <div className="error-card">
-                    {/* Draggable-ish sticker */}
-                    <div className="sticker">UH OH.</div>
+          <h1>404</h1>
+          <p>You went off the map. While you're here, feel free to touch things.</p>
 
-                    <h1>404</h1>
-                    <p>You went off the map. While you're here, feel free to touch things.</p>
+          {/* Fidget Switches */}
+          <div className="switch-row">
+            <div className="toggle-box" title="Click me!"><div className="toggle-lever"></div></div>
+            <div className="toggle-box" title="Click me!"><div className="toggle-lever"></div></div>
+            <div className="toggle-box" title="Click me!"><div className="toggle-lever"></div></div>
+          </div>
 
-                    {/* Fidget Switches */}
-                    <div className="switch-row">
-                        <div className="toggle-box" title="Click me!"><div className="toggle-lever"></div></div>
-                        <div className="toggle-box" title="Click me!"><div className="toggle-lever"></div></div>
-                        <div className="toggle-box" title="Click me!"><div className="toggle-lever"></div></div>
-                    </div>
+          {/* Panic Button */}
+          <div style={{ fontFamily: "'JetBrains Mono'", fontSize: '10px', marginBottom: '8px', color: 'var(--gray)' }}>DO NOT PRESS</div>
+          <div className="big-red-btn">RESET</div>
 
-                    {/* Panic Button */}
-                    <div style={{ fontFamily: "'JetBrains Mono'", fontSize: '10px', marginBottom: '8px', color: 'var(--gray)' }}>DO NOT PRESS</div>
-                    <div className="big-red-btn">RESET</div>
-
-                    <Link href="/" className="home-btn">GO HOME →</Link>
-                </div>
-
-            </div>
+          <Link href="/" className="home-btn">GO HOME →</Link>
         </div>
-    );
+
+      </div>
+    </div>
+  );
 }
