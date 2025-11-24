@@ -638,6 +638,12 @@ p {
   justify-content: space-between;
 }
 
+/* LIVE FORM CARDS */
+.live-form-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
 .footer-link {
   font-family: 'JetBrains Mono';
   font-weight: 700;

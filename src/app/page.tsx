@@ -77,24 +77,95 @@ export default function Home() {
 
         </section>
 
-        {/* 3. FEATURES */}
-        <section className="features-grid">
-          <div className="feature-card">
-            <div style={{ fontSize: "32px", marginBottom: "16px" }}>⚡️</div>
-            <h3 style={{ fontWeight: 800, marginBottom: "12px" }}>Keyboard First</h3>
-            <p style={{ fontSize: "15px", margin: 0, color: "#555" }}>Navigate entire flows without touching your mouse. Speed is a feature.</p>
+        {/* 2.5 LIVE FORMS SECTION */}
+        <section style={{
+          gridColumn: 'span 12',
+          marginTop: '80px',
+          marginBottom: '80px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}>
+          <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+            <h2 style={{ fontSize: '48px', fontWeight: 900, marginBottom: '16px', letterSpacing: '-2px' }}>
+              Forms That Are Actually Live Right Now
+            </h2>
+            <p style={{ color: 'var(--gray)', fontSize: '17px', fontFamily: "'JetBrains Mono'" }}>
+              (Yes, we're accepting responses. Shocking, we know.)
+            </p>
           </div>
-          <div className="feature-card">
-            <div style={{ fontSize: "32px", marginBottom: "16px" }}>🎨</div>
-            <h3 style={{ fontWeight: 800, marginBottom: "12px" }}>Brutalist Design</h3>
-            <p style={{ fontSize: "15px", margin: 0, color: "#555" }}>Thick borders, high contrast, no fluff. We make data look good.</p>
-          </div>
-          <div className="feature-card">
-            <div style={{ fontSize: "32px", marginBottom: "16px" }}>📊</div>
-            <h3 style={{ fontWeight: 800, marginBottom: "12px" }}>Real Analytics</h3>
-            <p style={{ fontSize: "15px", margin: 0, color: "#555" }}>Track drop-offs instantly. Find out exactly where you lost them.</p>
+
+          <div style={{
+            width: '100%',
+            maxWidth: '900px'
+          }}>
+
+            {/* Startup Interest Form - Larger Card */}
+            <a href="/form/startup" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <div style={{
+                background: 'var(--charcoal)',
+                color: 'var(--bone)',
+                borderRadius: '24px',
+                padding: '48px',
+                position: 'relative',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                border: '3px solid var(--charcoal)'
+              }}
+                className="live-form-card">
+
+                {/* Live Badge */}
+                <div style={{
+                  position: 'absolute',
+                  top: '24px',
+                  right: '24px',
+                  background: 'var(--neon-green)',
+                  color: 'var(--charcoal)',
+                  padding: '6px 16px',
+                  borderRadius: '8px',
+                  fontFamily: "'JetBrains Mono'",
+                  fontSize: '12px',
+                  fontWeight: 800,
+                  border: '2px solid var(--charcoal)'
+                }}>
+                  LIVE
+                </div>
+
+                <div style={{
+                  fontFamily: "'JetBrains Mono'",
+                  fontSize: '13px',
+                  color: 'var(--neon-green)',
+                  marginBottom: '20px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px'
+                }}>
+                  Editor's Pick
+                </div>
+
+                <h3 style={{ fontSize: '36px', fontWeight: 800, marginBottom: '20px', lineHeight: '1.1' }}>
+                  Startup Interest & Profile
+                </h3>
+                <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.8)', margin: 0, lineHeight: '1.6', marginBottom: '32px' }}>
+                  We explore if your startup idea is genius or just another "Uber for X." Primary intake for batch '26. Bring your pitch deck and your courage.
+                </p>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontFamily: "'JetBrains Mono'", fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>
+                    BY IBBE TEAM
+                  </span>
+                  <span style={{ fontFamily: "'JetBrains Mono'", fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>
+                    5 MIN READ
+                  </span>
+                </div>
+              </div>
+            </a>
+
           </div>
         </section>
+
+        {/* 3. FEATURES - REMOVED */}
 
         {/* 4. FOOTER */}
         <footer className="footer">
